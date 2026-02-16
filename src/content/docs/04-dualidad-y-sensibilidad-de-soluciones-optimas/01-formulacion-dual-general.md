@@ -2,51 +2,34 @@
 title: "Formulación dual general"
 ---
 
-## Par primal-dual canónico (minimización primal)
+La construcción del dual sigue reglas de correspondencia entre restricciones del primal y variables duales, y entre variables del primal y restricciones duales.
 
-Primal:
+## Regla estructural
 
-$$
-\min c^\top x
-$$
+Partiendo de un primal de minimización, cada fila del primal genera una variable dual, y cada columna del primal genera una restricción dual.
 
-sujeto a, por fila $i$:
+El signo/tipo se hereda así:
 
-- si $a_i^\top x\ge b_i$ entonces $y_i\ge 0$,
-- si $a_i^\top x\le b_i$ entonces $y_i\le 0$,
-- si $a_i^\top x=b_i$ entonces $y_i$ libre.
+- restricción primal "$\ge$" $\Rightarrow$ dual no negativa,
+- restricción primal "$\le$" $\Rightarrow$ dual no positiva,
+- restricción primal "=" $\Rightarrow$ dual libre.
 
-Por columna $j$:
+Para variables primales:
 
-- si $x_j\ge 0$ entonces $(A^\top y)_j\le c_j$,
-- si $x_j\le 0$ entonces $(A^\top y)_j\ge c_j$,
-- si $x_j$ libre entonces $(A^\top y)_j=c_j$.
+- $x_j\ge 0$ $\Rightarrow$ restricción dual tipo "$\le$",
+- $x_j\le 0$ $\Rightarrow$ restricción dual tipo "$\ge$",
+- $x_j$ libre $\Rightarrow$ restricción dual en igualdad.
 
-Dual:
+## Forma compacta
 
-$$
-\max b^\top y \quad \text{s.a. reglas de signo/igualdad anteriores}.
-$$
+El objetivo dual usa el lado derecho del primal, y la matriz aparece transpuesta.
 
-## Idea estructural
+:::tip[Ejemplo guiado]
+Si en el primal una restricción representa disponibilidad de recurso, en el dual su variable asociada puede interpretarse como valor marginal de ese recurso.
 
-El dual traduce “combinar restricciones del primal para acotar objetivo primal”.
+Por eso es clave no equivocarse en signos: cambiar "$\le$" por "$\ge$" altera completamente la interpretación económica.
+:::
 
-## Regla mnemotécnica útil
+## Recomendación
 
-- Tipo de restricción primal determina signo dual.
-- Signo de variable primal determina tipo de restricción dual.
-
-## Ejemplo simple
-
-Si primal estándar es
-
-$$
-\min\{c^\top x: Ax=b,\; x\ge 0\},
-$$
-
-su dual es
-
-$$
-\max\{b^\top y: A^\top y\le c,\; y\ \text{libre}\}.
-$$
+Antes de simplificar algebraicamente, escribe la tabla de correspondencias fila-a-variable y columna-a-restricción. Eso reduce errores en la formulación dual.

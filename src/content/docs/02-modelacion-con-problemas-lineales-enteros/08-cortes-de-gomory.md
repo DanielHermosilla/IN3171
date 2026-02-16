@@ -2,40 +2,37 @@
 title: "Cortes de Gomory"
 ---
 
-## Punto de partida
+Los cortes de Gomory nacen directamente de la tabla simplex de la relajación lineal. La lógica es derivar una desigualdad que todas las soluciones enteras cumplen, pero que la solución fraccional actual viola.
 
-Para un problema entero en forma estándar:
+## Configuración
+
+Partimos desde
 
 $$
-\min c^\top x \quad \text{s.a.}\quad Ax=b,\; x\ge 0,\; x\in\mathbb{Z}^n,
+\min c^\top x \quad\text{s.a.}\quad Ax=b,\ x\ge 0,\ x\in\mathbb{Z}^n.
 $$
 
-resolver la relajación lineal y obtener una base $B$ con descomposición $A=[B\ N]$.
-
-## Ecuación básica
+Con base $B$ y partición $A=[B\ N]$:
 
 $$
 x_B + B^{-1}N x_N = B^{-1}b.
 $$
 
-Tomando la fila $i$ con lado derecho fraccional, se separan partes fraccionarias y se obtiene el corte fraccional de Gomory:
+Si en una fila el lado derecho es fraccional, se construye el corte usando partes fraccionarias de coeficientes y término independiente.
 
-$$
-\sum_{j\in N} \left\{\bar a_{ij}\right\}x_j \ge \left\{\bar b_i\right\},
-$$
+## Idea operativa (sin sobrecargar notación)
 
-donde $\{t\}=t-\lfloor t\rfloor$ es la parte fraccionaria.
+- tomar fila fraccional,
+- separar parte entera/fraccional,
+- construir desigualdad válida para enteros,
+- agregarla al modelo.
 
-En forma equivalente para agregar al primal de minimización se usa una desigualdad lineal válida que elimina la SBF fraccional actual.
+## Qué se gana
 
-## Interpretación
+Cada corte de Gomory reduce la región fraccional factible de la relajación. En problemas difíciles, suele combinarse con branching.
 
-- El corte se construye desde el tableau.
-- Es válido para todas las soluciones enteras.
-- Corta específicamente el punto fraccional actual.
+:::tip[Ejemplo guiado]
+Si la relajación entrega una variable básica con valor 3.5, esa fila es candidata natural para corte. El nuevo corte no elimina soluciones enteras factibles, pero sí elimina la solución actual (o parte del entorno fraccional que la contiene).
+:::
 
-![corte de gomory imagen 01](/img/corte-de-gomory-imagen-01.png)
-
-## Limitación práctica
-
-Los cortes de Gomory puros pueden ser numéricamente delicados. En solvers modernos se usan variantes estabilizadas y se combinan con otras familias de cortes.
+Esto explica por qué Gomory se considera una familia "general": no depende de una estructura especial como mochila o cobertura.

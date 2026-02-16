@@ -2,9 +2,11 @@
 title: "Slater, calificación de restricciones y dualidad fuerte"
 ---
 
-## Condición de Slater (convexo)
+Para pasar de "KKT como condición necesaria" a "KKT como caracterización de óptimo" en convexos, necesitamos condiciones de calificación. La más usada en el curso es Slater.
 
-Si el problema es convexo y existe $\bar x$ tal que:
+## Condición de Slater
+
+Si el problema es convexo y existe $\bar x$ tal que
 
 $$
 g_i(\bar x)<0\ \forall i,
@@ -12,26 +14,19 @@ g_i(\bar x)<0\ \forall i,
 h_j(\bar x)=0\ \forall j,
 $$
 
-entonces hay dualidad fuerte:
+entonces se cumple dualidad fuerte y existen multiplicadores óptimos.
 
-$$
-p^*=d^*,
-$$
+## Consecuencia práctica
 
-y existe multiplicador óptimo dual.
+Bajo convexidad + Slater:
 
-## Implicancia central
+- no hay gap dual,
+- KKT caracteriza óptimos globales.
 
-En este contexto, un punto que cumple KKT es óptimo global.
+:::tip[Ejemplo guiado]
+En un problema convexo con desigualdades lineales y cuadráticas convexas, si puedes exhibir un punto estrictamente factible para las desigualdades, Slater queda verificada y puedes trabajar con KKT con respaldo teórico fuerte.
+:::
 
-## Otras calificaciones
+## Criterio operativo
 
-Existen CQ más débiles (LICQ, MFCQ), pero en el curso Slater es la más relevante para convexos.
-
-## Relación con clases
-
-Las clases 23-24 se enfocaron en:
-
-1. escribir KKT correctamente,
-2. verificar factibilidad + complementaria,
-3. usar convexidad + Slater para concluir optimalidad global.
+Antes de resolver por KKT en convexos, pregunta explícitamente: ¿hay punto de Slater? Si la respuesta es sí, el análisis es mucho más sólido.

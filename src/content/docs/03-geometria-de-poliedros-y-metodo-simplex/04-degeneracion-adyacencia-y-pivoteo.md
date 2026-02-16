@@ -2,41 +2,38 @@
 title: "Degeneración, adyacencia y pivoteo"
 ---
 
+Moverse entre SBFs adyacentes es el mecanismo central de Simplex. En esa dinámica aparece un fenómeno importante: la degeneración.
+
+## Adyacencia entre SBFs
+
+Dos SBFs son adyacentes cuando comparten casi toda su estructura de base y difieren en un intercambio mínimo de variable básica/no básica.
+
+El pivoteo implementa exactamente ese intercambio.
+
 ## Degeneración
 
-Una SBF es degenerada si alguna componente básica vale cero.
+Una SBF es degenerada si alguna variable básica vale 0.
 
 Consecuencias:
 
-- Puede cambiar la base sin cambiar el punto $x$.
-- Puede haber pivoteos con paso $\theta^*=0$.
-- Riesgo de ciclaje si no se cuida la regla de pivoteo.
+- puede cambiar la base sin cambiar el punto geométrico,
+- puede ocurrir paso $\theta=0$,
+- puede aparecer ciclaje si no se controla la regla de selección.
 
-## Dirección básica
+## Dirección de movimiento
 
-Al hacer entrar variable no básica $x_j$, la dirección $d$ satisface:
-
-$$
-Ad=0,\quad d_j=1,\quad d_{N\setminus\{j\}}=0,
-$$
-
-y para básicas
+Cuando entra una no básica $x_j$, se genera una dirección $d$ compatible con $Ad=0$ y se busca el mayor paso factible:
 
 $$
-d_B = -B^{-1}A_j.
+x(\theta)=x+\theta d,\quad \theta\ge 0.
 $$
 
-## Tamaño de paso
+El test de razón determina cuál variable básica sale.
 
-Para mantener factibilidad $x+\theta d\ge 0$:
+:::tip[Ejemplo guiado]
+Si al calcular razones mínimas encuentras empate y además la razón mínima es 0, puedes pivotear y quedar en el mismo punto. Ese es el caso típico de degeneración operativa.
+:::
 
-$$
-\theta^* = \min_{i\in B: d_i<0}\frac{x_i}{-d_i}.
-$$
+## Mensaje clave
 
-- Si no hay $d_i<0$, el problema es no acotado en esa dirección.
-- Si $\theta^*=0$, pivoteo degenerado.
-
-## Adyacencia
-
-Dos SBF son adyacentes si sus bases difieren en exactamente una columna (intercambio entrar/salir).
+Degeneración no significa error de modelación. Es una propiedad geométrica posible del poliedro y hay que manejarla con reglas robustas.

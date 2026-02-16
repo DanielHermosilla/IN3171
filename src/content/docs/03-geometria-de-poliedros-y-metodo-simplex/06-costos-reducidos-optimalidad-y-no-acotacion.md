@@ -2,39 +2,30 @@
 title: "Costos reducidos, optimalidad y no acotación"
 ---
 
-## Interpretación de costo reducido
+Los costos reducidos resumen si vale la pena activar una variable no básica. Son la señal local que guía el movimiento de Simplex.
 
-Para variable no básica $x_j$, su costo reducido en minimización es
+## Interpretación en minimización
 
-$$
-\bar c_j = c_j - c_B^\top B^{-1}A_j.
-$$
+Para una no básica $x_j$:
 
-- $\bar c_j<0$: conviene aumentar $x_j$ desde 0.
-- $\bar c_j\ge 0$: no mejora al entrar localmente.
+- si su costo reducido es favorable (negativo), conviene intentar que entre,
+- si todos los costos reducidos son no favorables, la base actual es óptima.
 
 ## Certificado de optimalidad
 
-Si $\bar c_N\ge 0$, la solución básica actual es óptima. Además $p=c_B^\top B^{-1}$ actúa como vector dual factible.
+Cuando ninguna variable no básica mejora el objetivo, no existe dirección factible de descenso desde la SBF actual. En ese caso, Simplex termina en óptimo.
 
 ## Certificado de no acotación
 
-Si existe $j$ con $\bar c_j<0$ y además $d_B=-B^{-1}A_j\ge 0$, entonces
+Si existe variable entrante que mejora pero la dirección asociada nunca viola no negatividad de básicas (no hay variable saliente), entonces el problema es no acotado en esa dirección.
 
-$$
-x(\theta)=x+\theta d
-$$
+:::tip[Ejemplo guiado]
+Piensa en una dirección factible que reduce costo y en la que puedes aumentar el paso indefinidamente sin romper restricciones. Eso implica que el valor objetivo puede bajar sin límite.
+:::
 
-es factible para todo $\theta\ge 0$ y
+## Cuidado práctico
 
-$$
-c^\top x(\theta)=c^\top x + \theta\bar c_j \to -\infty.
-$$
+No confundir "no acotado" con "infactible":
 
-Conclusión: el primal es no acotado.
-
-## Conexión dual
-
-Estas condiciones encajan con dualidad:
-
-- dual factible + primal factible + holgura complementaria implican optimalidad (ver [Holgura complementaria](/04-dualidad-y-sensibilidad-de-soluciones-optimas/03-holgura-complementaria/)).
+- no acotado: sí hay factibilidad, pero el objetivo no tiene cota inferior,
+- infactible: no existe ningún punto que cumpla todas las restricciones.

@@ -2,44 +2,35 @@
 title: "Planos cortantes y desigualdades válidas"
 ---
 
+La idea de cortes es simple: si la relajación lineal permite puntos fraccionarios que no son válidos para el problema entero, agregamos desigualdades que eliminen esos puntos sin eliminar soluciones enteras factibles.
+
 ## Definiciones
 
 Sea
 
 $$
-S=\{x\in\mathbb{Z}^n: Ax\le b\},
-\qquad
+S=\{x\in\mathbb{Z}^n: Ax\le b\},\qquad
 P=\{x\in\mathbb{R}^n: Ax\le b\}.
 $$
 
-Una desigualdad $v^\top x\le d$ es **válida** para $S$ si todo $x\in S$ la satisface.
+Una desigualdad $v^\top x\le d$ es:
 
-Es un **corte** para $P$ si además existe algún $\hat x\in P$ tal que
+- **válida** para $S$ si todo $x\in S$ la cumple,
+- **corte** para $P$ si además corta al menos un punto fraccional de $P$.
 
-$$
-v^\top \hat x > d.
-$$
+## Esquema conceptual
 
-## Algoritmo conceptual de cutting planes
+1. Resolver relajación lineal.
+2. Si la solución es fraccional, buscar un corte válido que la viole.
+3. Agregar el corte al modelo.
+4. Reoptimizar.
 
-1. Resolver relajación lineal y obtener $x^*$.
-2. Si $x^*$ entero: terminar.
-3. Si $x^*$ fraccional: encontrar corte válido que viole $x^*$.
-4. Agregar corte y repetir.
+Repetir hasta obtener solución entera o decidir ramificación.
 
-## Meta geométrica
+:::tip[Ejemplo guiado]
+Imagina que la relajación entrega $x=(0.5,0.5,0.5)$ en un problema binario. Si encuentras una desigualdad válida para todas las soluciones binarias pero que ese punto no cumple, entonces acabas de mejorar la relajación sin perder factibilidad entera.
+:::
 
-Aproximar la envolvente convexa entera:
+## Conexión con la práctica
 
-$$
-\operatorname{conv}(S).
-$$
-
-Mientras más cerca esté la relajación de $\operatorname{conv}(S)$, mejor rendimiento global.
-
-## Notas
-
-- Un corte útil debe separar el punto fraccional actual, no solo ser válido.
-- En la práctica se combinan familias de cortes y Branch-and-Bound, dando [Branch-and-Cut y práctica computacional](/02-modelacion-con-problemas-lineales-enteros/09-branch-and-cut-y-practica-computacional/).
-
-![branch and cut imagen 01](/img/branch-and-cut-imagen-01.png)
+En solvers modernos, los cortes no reemplazan branching: lo complementan. Esa combinación es la base de Branch-and-Cut.

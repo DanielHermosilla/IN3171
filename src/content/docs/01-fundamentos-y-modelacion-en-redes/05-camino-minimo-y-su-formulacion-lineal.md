@@ -2,42 +2,54 @@
 title: "Camino mínimo y su formulación lineal"
 ---
 
-## Definición
+El problema de camino mínimo busca una ruta de menor costo entre un origen y un destino. En clases se conecta de forma natural con flujo de costo mínimo: es el mismo esquema, pero moviendo una sola unidad.
 
-Dado $G=(V,A)$, costos $c_{ij}\ge 0$, origen $s$ y destino $t$, buscamos un camino de costo mínimo.
+## Modelo como flujo unitario
 
-## Formulación como flujo unitario
-
-Variables $x_{ij}\in\{0,1\}$ indican si el arco se usa.
+Dado $G=(V,A)$, costos $c_{ij}$, origen $s$ y destino $t$, definimos $x_{ij}$ como flujo en el arco $(i,j)$.
 
 $$
 \min \sum_{(i,j)\in A} c_{ij}x_{ij}
 $$
 
-sujeto a balance de una unidad:
+sujeto a:
 
 $$
 \sum_{j:(i,j)\in A}x_{ij} - \sum_{j:(j,i)\in A}x_{ji}=
 \begin{cases}
 1, & i=s,\\
 -1, & i=t,\\
-0, & \text{otro caso.}
+0, & \text{en otro caso.}
 \end{cases}
 $$
 
-La relajación lineal ya entrega solución entera por total unimodularidad de la matriz de incidencia en este contexto.
-
-## Dual y potenciales
-
-El dual entrega variables de potencial $\pi_i$ con restricciones
-
 $$
-\pi_i - \pi_j \le c_{ij},
+x_{ij}\ge 0\quad \forall(i,j)\in A
 $$
 
-que son desigualdades de Bellman. En óptimo, los arcos del camino activo quedan “ajustados”.
+Cuando el grafo y los datos cumplen condiciones estándar, la solución sale naturalmente como un camino.
 
-## Relación con otros problemas
+## Intuición operativa
 
-- Es un caso de [Flujo de costo mínimo](/01-fundamentos-y-modelacion-en-redes/04-flujo-de-costo-minimo/).
-- Aparece como subestructura en secuenciamiento y planificación temporal.
+El modelo obliga a:
+
+- que salga una unidad desde $s$,
+- que llegue una unidad a $t$,
+- y que en nodos intermedios no se cree ni destruya flujo.
+
+El objetivo decide por dónde conviene pasar para minimizar costo total.
+
+:::tip[Ejemplo guiado]
+Si desde $s$ a $t$ tienes dos rutas:
+
+- ruta A con costo total 12,
+- ruta B con costo total 9,
+
+el modelo concentra la unidad en la ruta B. Si luego subes el costo de un arco clave de B, la solución puede saltar a A automáticamente.
+
+Ese es el valor del modelo: adapta la decisión cuando cambian datos.
+:::
+
+## Relación con secuenciamiento por red
+
+En varias aplicaciones de planificación temporal, cada arco representa una decisión de "pasar" de un estado a otro en el tiempo. Al modelar así, el problema de secuenciar decisiones puede transformarse en camino mínimo.

@@ -2,45 +2,39 @@
 title: "Branch and Bound"
 ---
 
+Branch-and-Bound resuelve problemas enteros combinando dos ideas: cotas (bound) y partición del espacio (branching).
+
 ## Esquema del método
 
-Para resolver un PLE:
+Para
 
 $$
-\min\{c^\top x: Ax\le b,\; x\in\mathbb{Z}^n\}.
+\min\{c^\top x: Ax\le b,\ x\in\mathbb{Z}^n\},
 $$
 
-1. Resolver relajación lineal en un nodo.
-2. Si la solución es entera: candidata incumbente.
-3. Si no es entera: ramificar en una variable fraccional $x_k^*$.
+se procede así:
 
-Si $x_k^*=\alpha$ con $\alpha\notin\mathbb{Z}$, crear:
+1. Resolver relajación lineal del nodo.
+2. Si sale infactible: podar.
+3. Si sale entera: actualizar incumbente.
+4. Si sale fraccional: ramificar en una variable fraccional.
+
+Si $x_k^*=\alpha$ con $\alpha\notin\mathbb{Z}$, se crean nodos hijos:
 
 $$
-x_k\le \lfloor \alpha \rfloor,
+x_k\le \lfloor\alpha\rfloor,
 \qquad
-x_k\ge \lceil \alpha \rceil.
+x_k\ge \lceil\alpha\rceil.
 $$
 
-## Cotas y poda
+## Criterio de poda por cota
 
-En minimización, para nodo $N$ con valor relajado $z_{LP}(N)$:
+En minimización, si la cota inferior de un nodo es peor o igual que el mejor valor entero conocido, ese nodo no puede mejorar la solución y se poda.
 
-- Si infactible, podar.
-- Si $z_{LP}(N)\ge z_{inc}$, podar por cota.
-- Si solución entera, actualizar incumbente $z_{inc}$.
+:::tip[Ejemplo guiado]
+Supón incumbente 50. Si un nodo tiene relajación lineal con valor 57, ese nodo se descarta inmediatamente: aunque explores todo su subárbol, no mejorarás 50.
+:::
 
-## Correctitud
+## Mensaje clave
 
-La ramificación conserva todas las soluciones enteras factibles, porque cualquier entero cumple exactamente uno de los dos brazos.
-
-## Eficiencia práctica
-
-Depende de:
-
-- Fortaleza de relajación (ver [Fortaleza de formulaciones](/02-modelacion-con-problemas-lineales-enteros/03-fortaleza-de-formulaciones/)).
-- Estrategia de branching.
-- Heurísticas de incumbente.
-
-![branch and bound imagen 01](/img/branch-and-bound-imagen-01.png)
-![branch and bound imagen 03](/img/branch-and-bound-imagen-03.png)
+La calidad de la relajación en cada nodo define cuán rápido poda el árbol. Por eso la fortaleza de formulación es tan importante.

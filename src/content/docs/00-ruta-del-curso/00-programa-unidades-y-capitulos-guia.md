@@ -15,11 +15,11 @@ title: "Programa, unidades y capítulos guía"
 
 Para que el estudio sea más coherente con el flujo real de clases, las notas están organizadas en cinco bloques:
 
-1. [Unidad 1 - Fundamentos y modelación en redes](/01-fundamentos-y-modelacion-en-redes/00-unidad-1-mapa/)
-2. [Unidad 2 - Modelación con problemas lineales enteros](/02-modelacion-con-problemas-lineales-enteros/00-unidad-2-mapa/)
-3. [Unidad 3 - Geometría de poliedros y método Simplex](/03-geometria-de-poliedros-y-metodo-simplex/00-unidad-3-mapa/)
-4. [Unidad 4 - Dualidad y sensibilidad de soluciones óptimas](/04-dualidad-y-sensibilidad-de-soluciones-optimas/00-unidad-4-mapa/)
-5. [Unidad 5 - Elementos de optimización no lineal](/05-elementos-de-optimizacion-no-lineal/00-unidad-5-mapa/)
+1. [Unidad 1 - Fundamentos y modelación en redes](/IN3171/01-fundamentos-y-modelacion-en-redes/00-unidad-1-mapa/)
+2. [Unidad 2 - Modelación con problemas lineales enteros](/IN3171/02-modelacion-con-problemas-lineales-enteros/00-unidad-2-mapa/)
+3. [Unidad 3 - Geometría de poliedros y método Simplex](/IN3171/03-geometria-de-poliedros-y-metodo-simplex/00-unidad-3-mapa/)
+4. [Unidad 4 - Dualidad y sensibilidad de soluciones óptimas](/IN3171/04-dualidad-y-sensibilidad-de-soluciones-optimas/00-unidad-4-mapa/)
+5. [Unidad 5 - Elementos de optimización no lineal](/IN3171/05-elementos-de-optimizacion-no-lineal/00-unidad-5-mapa/)
 
 La Unidad 2 de estas notas integra contenidos de las unidades oficiales 2 y 5, porque en el semestre se enseñaron como secuencia natural: primero modelación entera y luego métodos de solución entera.
 
@@ -36,8 +36,8 @@ Según el programa:
 <!---->
 <!-- ## Lectura recomendada por bloque -->
 <!---->
-<!-- 1. Partir por [Modelación de problemas de optimización](/01-fundamentos-y-modelacion-en-redes/01-modelacion-de-problemas-de-optimizacion/). -->
-<!-- 2. Después pasar a [Poliedros, politopos y convexidad](/03-geometria-de-poliedros-y-metodo-simplex/01-poliedros-politopos-y-convexidad/) y [Algoritmo Simplex primal](/03-geometria-de-poliedros-y-metodo-simplex/05-algoritmo-simplex-primal/). -->
-<!-- 3. Consolidar con [Dualidad débil y fuerte](/04-dualidad-y-sensibilidad-de-soluciones-optimas/02-dualidad-debil-y-fuerte/). -->
-<!-- 4. Continuar con [Branch and Bound](/02-modelacion-con-problemas-lineales-enteros/05-branch-and-bound/) y [Cortes de Gomory](/02-modelacion-con-problemas-lineales-enteros/08-cortes-de-gomory/). -->
-<!-- 5. Cerrar con [Condiciones KKT](/05-elementos-de-optimizacion-no-lineal/05-condiciones-kkt/). -->
+<!-- 1. Partir por [Modelación de problemas de optimización](/IN3171/01-fundamentos-y-modelacion-en-redes/01-modelacion-de-problemas-de-optimizacion/). -->
+<!-- 2. Después pasar a [Poliedros, politopos y convexidad](/IN3171/03-geometria-de-poliedros-y-metodo-simplex/01-poliedros-politopos-y-convexidad/) y [Algoritmo Simplex primal](/IN3171/03-geometria-de-poliedros-y-metodo-simplex/05-algoritmo-simplex-primal/). -->
+<!-- 3. Consolidar con [Dualidad débil y fuerte](/IN3171/04-dualidad-y-sensibilidad-de-soluciones-optimas/02-dualidad-debil-y-fuerte/). -->
+<!-- 4. Continuar con [Branch and Bound](/IN3171/02-modelacion-con-problemas-lineales-enteros/05-branch-and-bound/) y [Cortes de Gomory](/IN3171/02-modelacion-con-problemas-lineales-enteros/08-cortes-de-gomory/). -->
+<!-- 5. Cerrar con [Condiciones KKT](/IN3171/05-elementos-de-optimizacion-no-lineal/05-condiciones-kkt/). -->

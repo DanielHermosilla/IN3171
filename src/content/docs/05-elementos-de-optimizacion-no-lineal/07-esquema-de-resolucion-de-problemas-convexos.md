@@ -2,34 +2,38 @@
 title: "Esquema de resolución de problemas convexos"
 ---
 
-## Workflow sugerido
+Esta nota resume el flujo de trabajo recomendado para ejercicios de optimización convexa con restricciones.
 
-1. Verificar convexidad de $f$ y de cada $g_i$.
-2. Verificar factibilidad y, si se puede, Slater.
-3. Escribir Lagrangeano y KKT.
-4. Identificar restricciones activas candidatas.
-5. Resolver sistema de ecuaciones KKT por casos.
-6. Verificar factibilidad final y seleccionar mínimo.
+## Paso 1: Diagnóstico estructural
 
-## Plantilla algebraica
+- verificar convexidad de $f$,
+- verificar convexidad de restricciones $g_i$,
+- revisar que igualdades sean afines.
 
-Para cada conjunto activo $\mathcal{A}$:
+## Paso 2: Factibilidad y regularidad
 
-$$
-\begin{cases}
-\nabla f(x)+\sum_{i\in\mathcal{A}}\lambda_i\nabla g_i(x)+\sum_j\mu_j\nabla h_j(x)=0,\\
-g_i(x)=0,\ i\in\mathcal{A},\\
-g_i(x)<0,\ i\notin\mathcal{A},\\
-\lambda_i\ge 0.
-\end{cases}
-$$
+- verificar que el conjunto factible no esté vacío,
+- buscar punto de Slater cuando corresponda.
 
-## Errores frecuentes
+## Paso 3: Sistema KKT
 
-- Omitir factibilidad primal al final.
-- Usar KKT como suficiente sin convexidad.
-- Ignorar signos de multiplicadores.
+Escribir:
 
-## Cierre de curso
+- estacionariedad,
+- factibilidad primal,
+- factibilidad dual,
+- holgura complementaria.
 
-Este esquema conecta naturalmente con dualidad lineal: ambos mundos usan multiplicadores como precios/sensibilidades, pero en no lineal aparecen términos de curvatura y regularidad.
+## Paso 4: Resolver por casos
+
+Identificar restricciones activas probables y resolver el sistema asociado. Luego validar factibilidad completa.
+
+## Paso 5: Cierre
+
+Confirmar que el candidato obtenido cumple todas las condiciones y reportar valor objetivo con interpretación.
+
+:::tip[Ejemplo guiado]
+Si te cuesta resolver directamente, parte asumiendo un conjunto activo pequeño y verifica consistencia. Si no cierra (por signo de multiplicadores o violación de factibilidad), cambia hipótesis de conjunto activo.
+:::
+
+Este esquema evita saltos lógicos y reduce errores de álgebra en controles/examen.

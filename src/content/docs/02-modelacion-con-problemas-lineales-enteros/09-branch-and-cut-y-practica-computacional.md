@@ -2,42 +2,43 @@
 title: "Branch-and-Cut y práctica computacional"
 ---
 
-## Arquitectura estándar en solvers modernos
+En práctica, los solvers no usan solo Branch-and-Bound ni solo cortes: usan ambos en conjunto. Ese esquema es Branch-and-Cut.
 
-Branch-and-Cut = Branch-and-Bound + generación dinámica de cortes.
+## Estructura general
 
-En cada nodo:
+En un nodo del árbol:
 
-1. Resolver relajación LP.
-2. Separar cortes (cover, Gomory, MIR, etc.).
-3. Re-optimizar LP.
+1. Resolver relajación lineal.
+2. Separar cortes violados.
+3. Reoptimizar.
 4. Si sigue fraccional, ramificar.
+
+Con esto, cada nodo se explora con una relajación más fuerte que la inicial.
 
 ## Cotas globales
 
 En minimización:
 
-- Cota inferior global: mejor bound entre nodos abiertos.
-- Cota superior global: incumbente entero actual.
+- **Cota superior**: valor incumbente entero.
+- **Cota inferior**: mejor bound entre nodos abiertos.
 
-Se detiene cuando
+Criterio de cierre típico:
 
 $$
-\frac{z_{UB}-z_{LB}}{\max(1,|z_{UB}|)} \le \varepsilon.
+\text{gap} = \frac{\text{UB}-\text{LB}}{\max(1,|\text{UB}|)}.
 $$
 
-## Recomendaciones de modelación (muy prácticas)
+Si el gap es suficientemente pequeño, se termina.
 
-1. Escalar datos para evitar coeficientes extremos.
-2. Usar cotas ajustadas de variables.
-3. Evitar Big-M enorme.
-4. Incluir desigualdades válidas evidentes desde el dominio.
-5. Revisar simetrías y romperlas cuando sea posible.
+## Recomendaciones de modelación para solver
 
-## Conexiones
+- usar cotas ajustadas,
+- evitar Big-M gigantes,
+- escalar bien unidades,
+- declarar tipos de variable correctamente.
 
-- Teoría de cortes: [Planos cortantes y desigualdades válidas](/02-modelacion-con-problemas-lineales-enteros/06-planos-cortantes-y-desigualdades-validas/).
-- Implementación básica: [Uso rápido de Gurobi para IN3171](/06-taller-y-practica/02-uso-rapido-de-gurobi-para-in3171/).
+:::tip[Ejemplo guiado]
+Dos modelos pueden representar exactamente el mismo problema. Si uno tiene $M$ ajustados y buenas cotas de variables, puede resolverse en segundos; el otro, con formulación débil, puede tardar mucho más con el mismo solver.
+:::
 
-![branch and cut imagen 02](/img/branch-and-cut-imagen-02.jpeg)
-![branch and cut imagen 03](/img/branch-and-cut-imagen-03.jpeg)
+La parte computacional no reemplaza la teoría: la materializa.

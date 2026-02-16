@@ -2,37 +2,48 @@
 title: "Condiciones KKT"
 ---
 
-Para un punto candidato $(x^*,\lambda^*,\mu^*)$:
+Las condiciones KKT son el sistema de ecuaciones/desigualdades que caracteriza candidatos óptimos en problemas con restricciones.
 
-## 1) Factibilidad primal
+## Sistema KKT
+
+Para un candidato $(x^*,\lambda^*,\mu^*)$:
+
+1. Factibilidad primal
 
 $$
 g_i(x^*)\le 0,\quad h_j(x^*)=0.
 $$
 
-## 2) Factibilidad dual
+2. Factibilidad dual
 
 $$
 \lambda_i^*\ge 0.
 $$
 
-## 3) Holgura complementaria
+3. Holgura complementaria
 
 $$
 \lambda_i^* g_i(x^*)=0,\quad \forall i.
 $$
 
-## 4) Estacionariedad
+4. Estacionariedad
 
 $$
-\nabla f(x^*) + \sum_{i=1}^m \lambda_i^*\nabla g_i(x^*) + \sum_{j=1}^p \mu_j^*\nabla h_j(x^*)=0.
+\nabla f(x^*) + \sum_i \lambda_i^*\nabla g_i(x^*) + \sum_j \mu_j^*\nabla h_j(x^*) = 0.
 $$
 
-## Lectura geométrica
+## Interpretación
 
-La condición de estacionariedad dice que el gradiente de $f$ queda en el cono generado por gradientes de restricciones activas (con signo apropiado).
+KKT combina:
 
-## Status teórico
+- factibilidad,
+- activación de restricciones,
+- equilibrio de gradientes.
 
-- En problemas convexos con calificación adecuada, KKT es necesario y suficiente.
-- En no convexos, KKT suele ser necesario (bajo regularidad) pero no suficiente para globalidad.
+:::tip[Ejemplo guiado]
+Si una restricción no está activa en el óptimo ($g_i(x^*)<0$), entonces su multiplicador debe ser 0 por holgura complementaria. Eso simplifica mucho el sistema al resolver ejercicios por casos.
+:::
+
+## Importante
+
+En no convexo, KKT suele ser condición necesaria (no suficiente). En convexo, con regularidad adecuada, puede pasar a ser suficiente.

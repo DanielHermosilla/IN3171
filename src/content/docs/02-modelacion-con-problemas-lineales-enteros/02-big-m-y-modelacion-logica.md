@@ -2,37 +2,39 @@
 title: "Big-M y modelación lógica"
 ---
 
-## Patrón básico
+Big-M es una técnica para representar condiciones lógicas con restricciones lineales. Funciona, pero hay que usarla con cuidado: si $M$ es exageradamente grande, el modelo se vuelve débil.
 
-Si una restricción debe activarse solo cuando $y=1$:
+## Patrón de activación
+
+Si una restricción debe imponerse solo cuando $y=1$:
 
 $$
 a^\top x \le b + M(1-y),\quad y\in\{0,1\}.
 $$
 
-- Si $y=1$, queda $a^\top x\le b$.
+- Si $y=1$, recuperamos $a^\top x\le b$.
 - Si $y=0$, la restricción se relaja por $M$.
 
-## Acople producción-setup
+## Patrón de acople cantidad-activación
 
-Si $x$ es cantidad y $y$ indica “producir/no producir”:
+Si $x$ es cantidad producida y $y$ indica si se produce:
 
 $$
 0\le x \le My,\quad y\in\{0,1\}.
 $$
 
-## Riesgo de un Big-M grande
+Con esto, si $y=0$ forzamos $x=0$.
 
-Si $M$ es demasiado grande:
+:::tip[Ejemplo guiado]
+Supón que una línea produce hasta 20 unidades cuando está activa. En vez de usar $M=10000$, usa $M=20$:
 
-1. Debilita la relajación lineal.
-2. Genera inestabilidad numérica.
-3. Aumenta nodos en Branch-and-Bound.
+$$
+0\le x\le 20y.
+$$
 
-## Regla práctica
+Ambas son válidas matemáticamente, pero la segunda entrega una relajación mucho más informativa para el solver.
+:::
 
-Elegir $M$ **lo más chico posible** que siga siendo válido.
+## Regla práctica para elegir M
 
-Si sabemos cota superior real $x\le U$, usar $M=U$ en vez de un valor arbitrario enorme.
-
-Conexión directa con [Fortaleza de formulaciones](/02-modelacion-con-problemas-lineales-enteros/03-fortaleza-de-formulaciones/).
+No usar "un número muy grande" por comodidad. Buscar siempre la mejor cota superior física del problema (capacidad, demanda máxima, tiempo disponible, etc.).

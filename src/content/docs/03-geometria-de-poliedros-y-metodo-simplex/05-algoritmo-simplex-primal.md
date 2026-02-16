@@ -2,46 +2,42 @@
 title: "Algoritmo Simplex primal"
 ---
 
-## Problema estándar de minimización
+Simplex primal resuelve un PL en forma estándar moviéndose entre SBFs que mejoran el valor objetivo.
+
+## Problema base
 
 $$
-\min c^\top x\quad \text{s.a.}\quad Ax=b,\; x\ge 0.
+\min c^\top x \quad \text{s.a.}\quad Ax=b,\ x\ge 0.
 $$
 
-## Datos de una iteración
+## Estructura de una iteración
 
 Con base $B$:
 
-- solución básica: $x_B=B^{-1}b$, $x_N=0$,
-- multiplicadores simplex: $p^\top = c_B^\top B^{-1}$,
-- costos reducidos:
+- solución actual: $x_B=B^{-1}b$, $x_N=0$,
+- costos reducidos de no básicas: criterio para decidir entrada,
+- test de razón: criterio para decidir salida.
 
-$$
-\bar c_N^\top = c_N^\top - p^\top N.
-$$
+## Esquema operacional
 
-## Criterio de optimalidad
+1. Partir de una SBF.
+2. Revisar costos reducidos.
+3. Si todos cumplen condición de optimalidad, terminar.
+4. Elegir variable entrante que mejora.
+5. Calcular dirección y paso máximo factible.
+6. Pivotear y repetir.
 
-En minimización:
+## Qué garantiza mejora
 
-$$
-\bar c_j \ge 0\;\forall j\in N\quad \Rightarrow\quad x \text{ óptimo}.
-$$
+Mientras el paso sea positivo y la variable entrante tenga costo reducido favorable, el valor objetivo mejora.
 
-## Paso de pivoteo
+:::tip[Ejemplo guiado]
+Si una no básica tiene costo reducido negativo (caso minimización), subirla desde 0 reduce costo localmente. El test de razón evita violar factibilidad y define hasta dónde puedes moverte.
+:::
 
-Si existe $j$ con $\bar c_j<0$, entra $x_j$.
+## Qué falta para cerrar el método
 
-1. Calcular $d_B=-B^{-1}A_j$.
-2. Calcular $\theta^*=\min_{i:d_i<0} x_i/(-d_i)$.
-3. Sale la variable que logra el mínimo.
-4. Actualizar base y repetir.
+Quedan dos puntos prácticos que se estudian aparte:
 
-## Terminación
-
-- Óptimo: todos costos reducidos no negativos.
-- No acotado: dirección factible con mejora indefinida.
-
-![algoritmo simplex imagen 01](/img/algoritmo-simplex-imagen-01.png)
-![algoritmo simplex imagen 02](/img/algoritmo-simplex-imagen-02.png)
-![algoritmo simplex imagen 03](/img/algoritmo-simplex-imagen-03.png)
+- manejo de degeneración/ciclaje,
+- obtención de una base inicial cuando no es evidente.

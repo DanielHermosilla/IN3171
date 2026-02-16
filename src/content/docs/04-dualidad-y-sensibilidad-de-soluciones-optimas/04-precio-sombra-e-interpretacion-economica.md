@@ -2,30 +2,23 @@
 title: "Precio sombra e interpretación económica"
 ---
 
-## Definición
+El precio sombra de una restricción mide el valor marginal de relajar o endurecer ese recurso, dentro de un rango donde la base óptima no cambia.
 
-El precio sombra (multiplicador dual óptimo) de una restricción mide variación marginal del valor óptimo respecto del lado derecho.
+## Definición operativa
 
-Si
+Si $y_i^*$ es el multiplicador dual óptimo de la restricción $i$, entonces su interpretación es la variación aproximada del óptimo ante cambios pequeños del lado derecho asociado.
 
-$$
-\phi(b)=\min\{c^\top x: Ax\ge b\},
-$$
+## Interpretación práctica
 
-entonces localmente, para cambios pequeños $\Delta b$ que no cambian la base óptima:
+- precio sombra alto en magnitud: recurso crítico,
+- precio sombra cercano a 0: recurso no vinculante en el margen.
 
-$$
-\phi(b+\Delta b)\approx \phi(b)+{y^*}^\top\Delta b.
-$$
+Esto sirve para priorizar dónde invertir capacidad adicional.
 
-## Interpretación
+:::tip[Ejemplo guiado]
+En un problema de producción, si la restricción de horas de máquina tiene precio sombra 3, aumentar en una unidad esa disponibilidad mejora el objetivo en aproximadamente 3 unidades (mientras se mantenga la misma base).
+:::
 
-- $y_i^*>0$: relajar recurso $i$ (aumentar $b_i$ en minimización con tipo adecuado) encarece el óptimo.
-- $y_i^*<0$: lo abarata.
-- $y_i^*=0$: recurso no crítico localmente.
+## Advertencia
 
-## Restricción importante
-
-La interpretación marginal exacta vale dentro del rango de estabilidad de base (ver [Sensibilidad de la base óptima](/04-dualidad-y-sensibilidad-de-soluciones-optimas/05-sensibilidad-de-la-base-optima/)).
-
-![dualidad lagrangeana imagen 01](/img/dualidad-lagrangeana-imagen-01.png)
+La interpretación marginal no es global. Si el cambio es grande y altera la base óptima, el precio sombra deja de ser válido como aproximación lineal.

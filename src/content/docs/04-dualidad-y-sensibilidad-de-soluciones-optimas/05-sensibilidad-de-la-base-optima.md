@@ -2,9 +2,11 @@
 title: "Sensibilidad de la base óptima"
 ---
 
-## Sensibilidad local en $b$
+La sensibilidad de base estudia cuánto pueden cambiar datos del modelo sin que cambie la estructura básica óptima.
 
-Con base óptima fija $B$:
+## Cambios en el lado derecho
+
+Con base fija $B$:
 
 $$
 x_B = B^{-1}b.
@@ -13,25 +15,21 @@ $$
 Para perturbación $b+\Delta b$:
 
 $$
-x_B(\Delta b)=B^{-1}(b+\Delta b)=x_B + B^{-1}\Delta b.
+x_B(\Delta b)=B^{-1}(b+\Delta b)=x_B+B^{-1}\Delta b.
 $$
 
 La base sigue primal factible si $x_B(\Delta b)\ge 0$.
 
-## Sensibilidad local en $c$
+## Cambios en costos
 
-Con costos perturbados, los costos reducidos se vuelven:
+Si cambia $c$, la base se mantiene óptima mientras los costos reducidos de no básicas mantengan el signo de optimalidad correspondiente.
 
-$$
-\bar c_N = c_N - c_B^\top B^{-1}N.
-$$
+## Qué se obtiene en la práctica
 
-La base sigue óptima (minimización) mientras $\bar c_N\ge 0$.
+- rangos de variación admisible de parámetros,
+- estabilidad del plan óptimo,
+- detección de parámetros sensibles.
 
-## Programación paramétrica (idea)
-
-Si $b(\theta)=b^0+\theta d$, la solución óptima cambia por tramos lineales en $\theta$; la base va cambiando en puntos críticos.
-
-## Conexión
-
-Este análisis explica formalmente por qué precio sombra funciona en un rango y no globalmente.
+:::tip[Ejemplo guiado]
+Si el beneficio de un producto sube, no siempre cambia el plan óptimo. Primero hay un rango donde la base actual sigue siendo óptima; recién al salir de ese rango cambia la estructura de producción.
+:::

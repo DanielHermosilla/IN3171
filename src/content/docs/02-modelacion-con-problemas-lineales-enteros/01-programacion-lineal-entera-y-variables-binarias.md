@@ -2,12 +2,14 @@
 title: "Programación lineal entera y variables binarias"
 ---
 
+Cuando una decisión es de tipo sí/no (abrir o no abrir, asignar o no asignar, fabricar o no fabricar), modelarla con variables continuas puede producir soluciones imposibles de implementar. Ahí aparecen las variables enteras y binarias.
+
 ## Forma general
 
-Un problema de programación lineal entera mixta puede escribirse como
+Un problema lineal entero mixto se puede escribir como
 
 $$
-\min\{c^\top x + d^\top y : Ax + By \le b,\; x\in\mathbb{Z}^p,\; y\in\mathbb{R}^q\}.
+\min\{c^\top x + d^\top y : Ax + By \le b,\ x\in\mathbb{Z}^p,\ y\in\mathbb{R}^q\}.
 $$
 
 Caso binario puro:
@@ -18,42 +20,22 @@ $$
 
 ## Interpretación de variable binaria
 
-- $x_j=1$: activar decisión $j$.
-- $x_j=0$: no activar.
+La misma variable binaria puede representar muchas lógicas:
 
-Con eso se modelan decisiones tipo sí/no, selección, cobertura, apertura, asignación.
+- $x_j=1$: decisión activada,
+- $x_j=0$: decisión desactivada.
 
-## Restricciones comunes
+Lo importante es declarar claramente qué representa cada binaria desde el inicio del modelo.
 
-### Seleccionar exactamente $k$ elementos
+:::tip[Ejemplo guiado]
+Si $y_j$ indica abrir una instalación en el sitio $j$, entonces:
 
-$$
-\sum_{j=1}^n x_j = k.
-$$
+- $y_j=1$ significa "sitio abierto",
+- $y_j=0$ significa "sitio cerrado".
 
-### Al menos uno de dos eventos
+A partir de esa definición, todas las demás restricciones deben ser coherentes con esa interpretación (por ejemplo, no asignar clientes a un sitio cerrado).
+:::
 
-$$
-x_1 + x_2 \ge 1.
-$$
+## Error típico
 
-### Exclusión mutua
-
-$$
-x_1 + x_2 \le 1.
-$$
-
-### Implicación $x_a=1 \Rightarrow x_b=1$
-
-$$
-x_a \le x_b.
-$$
-
-## Relajación lineal
-
-Reemplazar $x_j\in\{0,1\}$ por $0\le x_j\le 1$ da la relajación lineal. Su valor óptimo provee cota:
-
-- minimización: cota inferior,
-- maximización: cota superior.
-
-Esta idea se usa sistemáticamente en [Branch and Bound](/02-modelacion-con-problemas-lineales-enteros/05-branch-and-bound/).
+Un error frecuente es introducir binarios sin necesidad o, al revés, dejar continuas variables que deberían ser discretas. Antes de decidir el tipo de variable, conviene preguntarse: **en la operación real, este valor puede fraccionarse o no?**

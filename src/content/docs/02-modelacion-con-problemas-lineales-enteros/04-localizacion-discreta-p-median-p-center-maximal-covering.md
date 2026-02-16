@@ -2,61 +2,52 @@
 title: "Localización discreta (p-median, p-center, maximal covering)"
 ---
 
-Variables típicas:
+En localización discreta decidimos dónde abrir instalaciones y cómo asignar demanda. Cambiando la función objetivo, obtenemos modelos con comportamientos muy distintos.
+
+## Variables comunes
 
 - $y_j\in\{0,1\}$: abrir instalación en sitio $j$.
-- $x_{ij}\in\{0,1\}$: cliente $i$ atendido por $j$.
-- $d_{ij}$: distancia/costo.
+- $x_{ij}\in\{0,1\}$: cliente $i$ asignado a instalación $j$.
+- $d_{ij}$: distancia entre cliente $i$ y sitio $j$.
 
-## p-median
-
-Minimiza distancia total:
+## p-median (minimiza distancia total)
 
 $$
 \min \sum_{i\in I}\sum_{j\in J} d_{ij}x_{ij}
 $$
 
-$$
-\sum_{j\in J}x_{ij}=1\;\forall i,\quad
-x_{ij}\le y_j\;\forall i,j,\quad
-\sum_{j\in J}y_j = p.
-$$
-
-## p-center
-
-Minimiza máxima distancia. Introducir $R$:
+sujeto a:
 
 $$
-\min R
+\sum_{j\in J}x_{ij}=1\ \forall i,\quad
+x_{ij}\le y_j\ \forall i,j,\quad
+\sum_{j\in J}y_j=p.
 $$
 
+## p-center (minimiza peor distancia)
+
+Se introduce variable $z$ para representar la distancia máxima:
+
 $$
-\sum_{j\in J}x_{ij}=1\;\forall i,\quad
-x_{ij}\le y_j\;\forall i,j,
+\min z
 $$
 
 $$
-\sum_{j\in J} d_{ij}x_{ij}\le R\;\forall i,
-\quad \sum_{j\in J}y_j=p.
+\sum_{j\in J}x_{ij}=1\ \forall i,\quad
+x_{ij}\le y_j\ \forall i,j,\quad
+\sum_{j\in J}y_j=p,
+$$
+
+$$
+\sum_{j\in J} d_{ij}x_{ij} \le z\ \forall i.
 $$
 
 ## Maximal covering
 
-Con radio de cobertura $D$, parámetro $a_{ij}=1$ si $d_{ij}\le D$.
+Dado un radio de cobertura $D$, se busca cubrir la mayor cantidad de clientes con a lo más $p$ instalaciones.
 
-Variables $z_i\in\{0,1\}$ indican si cliente $i$ queda cubierto.
+:::tip[Ejemplo guiado]
+Si el problema es logística comercial, p-median favorece eficiencia promedio. Si el problema es servicio crítico (ambulancias, bomberos), p-center suele ser más natural porque controla el peor caso de atención.
+:::
 
-$$
-\max \sum_{i\in I} w_i z_i
-$$
-
-$$
-z_i \le \sum_{j\in J} a_{ij}y_j\;\forall i,
-\quad \sum_{j\in J}y_j\le p.
-$$
-
-![maximal covering imagen 01](/img/maximal-covering-imagen-01.png)
-
-## Observación de modelación
-
-Algunas clases usaron instalaciones ya existentes $K$. Eso se incorpora fijando $y_j=1$ para $j\in K$ o ampliando el conjunto de asignación $J\cup K$.
+La elección del modelo depende de la métrica de desempeño que realmente importa en la aplicación.

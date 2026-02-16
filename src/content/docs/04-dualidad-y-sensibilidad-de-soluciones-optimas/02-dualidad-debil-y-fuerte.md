@@ -2,35 +2,40 @@
 title: "Dualidad débil y fuerte"
 ---
 
+Dualidad débil y fuerte son el núcleo teórico que conecta primal y dual.
+
 ## Dualidad débil
 
-Si $x$ es primal factible e $y$ es dual factible, entonces:
+Si $x$ es primal factible e $y$ es dual factible, entonces
 
 $$
 b^\top y \le c^\top x
 $$
 
-(en el esquema primal minimización, dual maximización).
+(en el caso primal minimización, dual maximización).
 
-### Consecuencia
+Esto significa:
 
-- Toda solución dual factible da cota inferior al óptimo primal.
-- Toda solución primal factible da cota superior al óptimo dual.
+- cualquier dual factible da una cota inferior del óptimo primal,
+- cualquier primal factible da una cota superior del óptimo dual.
 
 ## Dualidad fuerte
 
-Si primal y dual son factibles y el óptimo es finito, entonces:
+Bajo condiciones estándar de factibilidad y acotación, se cumple
 
 $$
-z_P^*=z_D^*.
+\min \text{(primal)} = \max \text{(dual)}.
 $$
 
-## Certificados típicos
+Cuando esto ocurre, se obtiene un certificado de optimalidad muy potente: basta encontrar soluciones factibles con el mismo valor objetivo.
 
-- Si encuentro $x$ primal factible e $y$ dual factible con $c^\top x=b^\top y$, ambos son óptimos.
-- Si primal es no acotado (en minimización), dual es infactible.
-- Si dual es no acotado (en maximización), primal es infactible.
+:::tip[Ejemplo guiado]
+Si tienes una solución primal factible con valor 120 y una dual factible con valor 120, ya no necesitas "seguir buscando": por dualidad débil ninguna puede superar a la otra, por lo que ambas son óptimas.
+:::
 
-## Conexión con Simplex
+## Qué revisar en ejercicios
 
-Los multiplicadores simplex $p^\top=c_B^\top B^{-1}$ suelen emerger como candidatos duales durante iteraciones.
+1. factibilidad primal,
+2. factibilidad dual,
+3. comparación de valores,
+4. uso de igualdad de valores para certificar óptimo.

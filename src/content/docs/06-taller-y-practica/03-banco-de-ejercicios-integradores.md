@@ -2,61 +2,45 @@
 title: "Banco de ejercicios integradores"
 ---
 
-## Ejercicio A (dual lagrangeano de PL estándar)
+Este banco está pensado para integrar contenidos de varias unidades en un mismo ejercicio.
 
-Sea
+## Ejercicio 1: Modelación + resolución
 
-$$
-\min\ c^\top x \quad \text{s.a.}\quad Ax=b,\; x\ge 0.
-$$
+Plantea un problema de localización con costos fijos de apertura, demandas de clientes y capacidad por instalación.
 
-1. Construir $L(x,y)$.
-2. Derivar $d(y)$.
-3. Mostrar que el dual coincide con
+Pide:
 
-$$
-\max\ b^\top y\quad \text{s.a.}\quad A^\top y\le c.
-$$
+1. formular el modelo,
+2. explicar cada variable/restricción,
+3. resolver una instancia pequeña,
+4. interpretar el resultado.
 
-Conecta con clase 27 y [Dualidad lagrangeana en PL y en redes](/04-dualidad-y-sensibilidad-de-soluciones-optimas/07-dualidad-lagrangeana-en-pl-y-en-redes/).
+## Ejercicio 2: PL + dualidad
 
-## Ejercicio B (holgura complementaria)
+A partir de un primal lineal en forma estándar:
 
-Dado un par primal-dual factible, determinar qué restricciones deben estar activas si ciertas variables duales son no nulas.
+1. construir el dual,
+2. verificar dualidad débil,
+3. certificar optimalidad con igualdad de valores.
 
-Objetivo: reconstruir candidato óptimo sin resolver todo el problema.
+## Ejercicio 3: Entero + cotas
 
-## Ejercicio C (B&B manual)
+Tomar un problema binario pequeño:
 
-Resolver por Branch-and-Bound:
+1. resolver relajación lineal,
+2. hacer una ramificación manual,
+3. podar por cota,
+4. encontrar incumbente entero.
 
-$$
-\min\ 7x+y
-$$
+## Ejercicio 4: No lineal convexo
 
-$$
-\begin{aligned}
-3x+2y &\le 5,\\
-5x+8y &\le 20,\\
-20x+y &\le 800,\\
-x,y &\in\mathbb{Z}_+.
-\end{aligned}
-$$
+Para un problema convexo con restricciones:
 
-Comparar cota LP y solución entera.
+1. escribir Lagrangeano,
+2. plantear KKT,
+3. resolver por conjunto activo,
+4. verificar factibilidad y optimalidad.
 
-## Ejercicio D (KKT en convexo)
-
-Resolver con KKT:
-
-$$
-\min\ 3x_1-x_2
-$$
-
-sujeto a
-
-$$
-4-x_1^2-(x_2-2)^2\le 0,\quad x_2-2\le 0,\quad x_1+x_2-5\le 0,\quad x_1\ge 0,\ x_2\ge 0.
-$$
-
-Objetivo: distinguir factibilidad, actividad y suficiencia bajo convexidad.
+:::tip[Ejemplo guiado]
+No partas por el álgebra. Parte por dibujar qué significa cada restricción en el contexto del problema. Cuando la interpretación está clara, las ecuaciones salen con menos errores.
+:::

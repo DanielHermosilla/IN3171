@@ -2,36 +2,28 @@
 title: "Existencia de óptimos y compacidad"
 ---
 
-## Teorema de Weierstrass (versión útil)
+Antes de buscar condiciones de optimalidad, conviene responder una pregunta básica: ¿el problema tiene solución óptima?
 
-Si $S$ es no vacío, cerrado y acotado (compacto) y $f$ es continua, entonces
+## Criterio clásico (Weierstrass)
+
+Si $S$ es no vacío, cerrado y acotado (compacto), y $f$ es continua, entonces
 
 $$
 \min\{f(x):x\in S\}
 $$
 
-admite solución óptima global.
+alcanza óptimo global.
 
-## Por qué importa
+## Por qué se revisa primero
 
-Antes de buscar KKT o algoritmos, primero conviene asegurar existencia:
+Puedes tener un problema factible con valor objetivo que baja sin límite o que se aproxima a un valor sin alcanzarlo. En esos casos, hablar de KKT como "solución" no tiene sentido operativo.
 
-1. factibilidad,
-2. coercividad/compacidad,
-3. continuidad.
+:::tip[Ejemplo guiado]
+Minimizar $f(x)=x$ en el conjunto $S=(0,1)$ tiene ínfimo 0, pero no hay minimizador porque 0 no pertenece a $S$. El problema no tiene solución óptima, aunque sí tiene cota inferior.
+:::
 
-## No existencia típica
+## Checklist previo
 
-Cuando $S$ es abierto o no acotado, puede haber ínfimo sin minimizador.
-
-Ejemplo:
-
-$$
-\min\{x: x>0\}=0 \quad \text{(inf)}
-$$
-
-pero no se alcanza.
-
-## Enlace
-
-Con existencia garantizada y convexidad, KKT pasa a ser herramienta central (ver [Condiciones KKT](/05-elementos-de-optimizacion-no-lineal/05-condiciones-kkt/)).
+1. comprobar factibilidad,
+2. revisar cierre y acotación del conjunto factible,
+3. revisar continuidad (o regularidad suficiente) de la función objetivo.

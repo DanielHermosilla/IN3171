@@ -2,36 +2,34 @@
 title: "Puntos extremos, vértices y caras"
 ---
 
+Una vez definido el poliedro, el siguiente paso es identificar sus "esquinas". Esas esquinas son los candidatos naturales del método Simplex.
+
 ## Punto extremo
 
-$x\in P$ es extremo si no puede escribirse como combinación convexa no trivial de otros dos puntos de $P$:
+Un punto $x\in P$ es extremo si no puede escribirse como combinación convexa no trivial de otros dos puntos de $P$:
 
 $$
-x=\lambda y + (1-\lambda)z,\; y,z\in P,\; \lambda\in(0,1)\Rightarrow y=z=x.
+x=\lambda y+(1-\lambda)z,\ \lambda\in(0,1),\ y,z\in P \Rightarrow y=z=x.
 $$
 
 ## Vértice
 
-$x\in P$ es vértice si existe $c$ tal que
+Un punto $x\in P$ es vértice si existe un vector de costos $c$ tal que $x$ es estrictamente mejor que cualquier otro punto factible para ese $c$.
 
-$$
-c^\top x < c^\top y,\quad \forall y\in P,\; y\neq x.
-$$
-
-En poliedros, vértice y punto extremo coinciden.
+En poliedros, estas nociones están estrechamente conectadas y se usan casi como equivalentes en la práctica del curso.
 
 ## Restricciones activas
 
-Para $P=\{x:Ax\le b\}$,
+Dado $x\in P$, una restricción $a_i^\top x\le b_i$ está activa si $a_i^\top x=b_i$.
+
+El conjunto de activas se denota por
 
 $$
 I(x)=\{i: a_i^\top x=b_i\}.
 $$
 
-$x$ es básico cuando existen $n$ restricciones activas linealmente independientes.
+Este conjunto será clave para pasar de una definición geométrica a una definición algebraica de base.
 
-## Teorema de optimalidad geométrica
-
-Si un PL tiene óptimo finito y región factible no vacía, existe solución óptima en un punto extremo.
-
-Este resultado es la justificación geométrica de Simplex.
+:::tip[Ejemplo guiado]
+En $\mathbb{R}^2$, piensa en un polígono. En un lado interior solo hay una restricción activa; en una esquina típicamente se activan dos restricciones independientes. Esa coincidencia de activas es lo que vuelve al punto "especial" para algoritmos basados en pivoteo.
+:::

@@ -2,53 +2,52 @@
 title: "Flujo de costo mínimo"
 ---
 
-## Problema
+En flujo de costo mínimo ya no queremos enviar "lo más posible", sino enviar lo que corresponde al menor costo total, respetando balances de oferta y demanda por nodo.
 
-En un grafo dirigido $G=(V,A)$, cada arco $(i,j)$ tiene costo $c_{ij}$ y capacidad $u_{ij}$. Cada nodo $i$ tiene balance $b_i$ (oferta si $b_i>0$, demanda si $b_i<0$), con
+## Formulación base
 
-$$
-\sum_{i\in V} b_i = 0.
-$$
+Sea $G=(V,A)$ un grafo dirigido. Cada arco $(i,j)$ tiene costo unitario $c_{ij}$ y, opcionalmente, capacidad $u_{ij}$. Cada nodo $i$ tiene balance $b_i$:
 
-## Formulación primal
+- $b_i>0$: oferta,
+- $b_i<0$: demanda,
+- $b_i=0$: transbordo.
+
+Se debe cumplir $\sum_{i\in V} b_i = 0$.
+
+Variables: $x_{ij}$ flujo por arco.
 
 $$
 \min \sum_{(i,j)\in A} c_{ij}x_{ij}
 $$
 
-sujeto a
+sujeto a:
 
 $$
-\sum_{j:(i,j)\in A}x_{ij} - \sum_{j:(j,i)\in A}x_{ji} = b_i,\quad \forall i\in V,
+\sum_{j:(i,j)\in A} x_{ij} - \sum_{j:(j,i)\in A} x_{ji} = b_i,\quad \forall i\in V
 $$
 
 $$
-0\le x_{ij}\le u_{ij},\quad \forall (i,j)\in A.
+0 \le x_{ij} \le u_{ij}, \quad \forall (i,j)\in A
 $$
 
-## Interpretación
+## Cómo leer el balance
 
-- Conservación: lo que sale menos lo que entra debe igualar la oferta/demanda.
-- Costos: el flujo se distribuye para minimizar costo total, no necesariamente para minimizar distancia por arco.
+El balance por nodo no es un detalle técnico: es la parte que define el sentido del modelo.
 
-## Dual (forma típica)
+- Si $b_i=4$, ese nodo debe "expulsar" neto 4 unidades.
+- Si $b_i=-3$, ese nodo debe "absorber" neto 3 unidades.
 
-Si $\pi_i$ son potenciales por conservación y $w_{ij}\ge 0$ por capacidad superior, entonces:
+Si cambias el signo sin querer, el problema cambia completamente.
 
-$$
-\max \sum_{i\in V} b_i\pi_i - \sum_{(i,j)\in A} u_{ij}w_{ij}
-$$
+:::tip[Ejemplo guiado]
+Supón tres nodos: planta (oferta 10), centro de distribución (0), clientes agregados (demanda 10). Si el arco directo planta-cliente es caro y la ruta vía centro es más barata, el modelo empuja flujo por la ruta intermedia, siempre que capacidad lo permita.
 
-sujeto a
+Esto muestra que el modelo no solo verifica factibilidad, sino que además elige rutas económicamente convenientes.
+:::
 
-$$
-\pi_i - \pi_j - w_{ij} \le c_{ij},\quad \forall (i,j)\in A.
-$$
+## Diferencia con flujo máximo
 
-Las desigualdades duales actúan como condiciones de costo reducido en redes.
+- En flujo máximo, el objetivo es cantidad enviada.
+- En costo mínimo, el objetivo es costo total de envío para cubrir balances.
 
-![problema de transporte imagen 01](/img/problema-de-transporte-imagen-01.png)
-
-## Caso especial: transporte
-
-Si hay nodos de oferta $I$ y demanda $J$, con arcos bipartitos completos, se obtiene el clásico problema de transporte.
+Son problemas parecidos en estructura, pero responden preguntas distintas.

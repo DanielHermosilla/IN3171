@@ -2,9 +2,11 @@
 title: "Lema de Farkas y teoremas de alternativas"
 ---
 
-## Versión clásica
+El Lema de Farkas formaliza una idea geométrica muy potente: o un sistema tiene solución no negativa, o existe un certificado lineal que demuestra que no la tiene, pero no ambas cosas a la vez.
 
-Exactamente uno de los siguientes sistemas tiene solución:
+## Forma clásica
+
+Exactamente uno de estos sistemas es factible:
 
 1.
 $$
@@ -16,20 +18,17 @@ $$
 A^\top y\ge 0,\quad b^\top y<0.
 $$
 
-No pueden ser ambos factibles ni ambos infactibles.
-
 ## Interpretación geométrica
 
-- O bien $b$ está en el cono generado por columnas de $A$,
-- o existe un hiperplano separador que certifica que no está.
+- o bien $b$ pertenece al cono generado por las columnas de $A$,
+- o bien existe un hiperplano que separa a $b$ de ese cono.
 
-## Uso como certificado de infactibilidad
+Esto conecta directamente con la idea de certificados de infactibilidad.
 
-Encontrar $y$ del sistema alternativo entrega prueba constructiva de que el primal no tiene solución.
+:::tip[Ejemplo guiado]
+Cuando una relajación lineal sale infactible, no significa solo "el solver no encontró". Significa que existe evidencia matemática (certificado) de que no hay solución, y Farkas explica la forma de esa evidencia.
+:::
 
-## Relación con dualidad
+## Relevancia en el curso
 
-Farkas puede verse como “dualidad sin función objetivo”: estructura de alternativas lineales que subyace a los teoremas duales.
-
-![lemma de farkas imagen 01](/img/lemma-de-farkas-imagen-01.png)
-![lemma de farkas imagen 02](/img/lemma-de-farkas-imagen-02.png)
+Farkas aparece como base conceptual para teoremas de alternativas, dualidad y certificados formales en PL.

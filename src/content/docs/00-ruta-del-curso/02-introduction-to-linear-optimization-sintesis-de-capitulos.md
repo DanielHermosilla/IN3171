@@ -30,7 +30,7 @@ El texto está organizado por capítulos que separan claramente:
 - Representación gráfica en baja dimensión.
 - Noción de algoritmo y costo computacional.
 
-Conecta con: [Modelación de problemas de optimización](/01-fundamentos-y-modelacion-en-redes/01-modelacion-de-problemas-de-optimizacion/).
+Conecta con: [Modelación de problemas de optimización](/IN3171/01-fundamentos-y-modelacion-en-redes/01-modelacion-de-problemas-de-optimizacion/).
 
 ### Capítulo 2
 
@@ -39,7 +39,7 @@ Conecta con: [Modelación de problemas de optimización](/01-fundamentos-y-model
 - Soluciones básicas factibles (SBF).
 - Degeneración.
 
-Conecta con: [Poliedros, politopos y convexidad](/03-geometria-de-poliedros-y-metodo-simplex/01-poliedros-politopos-y-convexidad/).
+Conecta con: [Poliedros, politopos y convexidad](/IN3171/03-geometria-de-poliedros-y-metodo-simplex/01-poliedros-politopos-y-convexidad/).
 
 ### Capítulo 3
 
@@ -49,7 +49,7 @@ Conecta con: [Poliedros, politopos y convexidad](/03-geometria-de-poliedros-y-me
 - Anti-ciclado (lexicográfico, Bland).
 - Fase I.
 
-Conecta con: [Algoritmo Simplex primal](/03-geometria-de-poliedros-y-metodo-simplex/05-algoritmo-simplex-primal/).
+Conecta con: [Algoritmo Simplex primal](/IN3171/03-geometria-de-poliedros-y-metodo-simplex/05-algoritmo-simplex-primal/).
 
 ### Capítulos 4 y 5
 
@@ -58,25 +58,25 @@ Conecta con: [Algoritmo Simplex primal](/03-geometria-de-poliedros-y-metodo-simp
 - Lema de Farkas.
 - Análisis de sensibilidad local y global.
 
-Conecta con: [Unidad 4 - Dualidad y sensibilidad de soluciones óptimas](/04-dualidad-y-sensibilidad-de-soluciones-optimas/00-unidad-4-mapa/).
+Conecta con: [Unidad 4 - Dualidad y sensibilidad de soluciones óptimas](/IN3171/04-dualidad-y-sensibilidad-de-soluciones-optimas/00-unidad-4-mapa/).
 
 ### Capítulo 7
 
 - Formulación de flujos en redes.
 - Flujo máximo, costo mínimo, camino mínimo, asignación.
 
-Conecta con: [Unidad 1 - Fundamentos y modelación en redes](/01-fundamentos-y-modelacion-en-redes/00-unidad-1-mapa/).
+Conecta con: [Unidad 1 - Fundamentos y modelación en redes](/IN3171/01-fundamentos-y-modelacion-en-redes/00-unidad-1-mapa/).
 
 ### Capítulos 10 y 11
 
 - Técnicas de formulación entera.
 - Branch and Bound, planos cortantes, dualidad entera.
 
-Conecta con: [Unidad 2 - Modelación con problemas lineales enteros](/02-modelacion-con-problemas-lineales-enteros/00-unidad-2-mapa/).
+Conecta con: [Unidad 2 - Modelación con problemas lineales enteros](/IN3171/02-modelacion-con-problemas-lineales-enteros/00-unidad-2-mapa/).
 
 ### Capítulo 8 (apoyo)
 
 - Nociones de complejidad y algoritmos eficientes.
 - Útil para entender por qué PE suele ser más difícil que PL.
 
-Conecta con: [Branch-and-Cut y práctica computacional](/02-modelacion-con-problemas-lineales-enteros/09-branch-and-cut-y-practica-computacional/).
+Conecta con: [Branch-and-Cut y práctica computacional](/IN3171/02-modelacion-con-problemas-lineales-enteros/09-branch-and-cut-y-practica-computacional/).

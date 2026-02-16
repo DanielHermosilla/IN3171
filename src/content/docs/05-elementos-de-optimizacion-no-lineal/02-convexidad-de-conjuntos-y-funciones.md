@@ -2,38 +2,39 @@
 title: "Convexidad de conjuntos y funciones"
 ---
 
+La convexidad es la propiedad estructural más importante de esta unidad.
+
 ## Conjunto convexo
 
 $C\subseteq\mathbb{R}^n$ es convexo si
 
 $$
-\lambda x+(1-\lambda)y\in C,
+\lambda x + (1-\lambda)y\in C,
 \quad \forall x,y\in C,\ \forall\lambda\in[0,1].
 $$
 
 ## Función convexa
 
-$f:C\to\mathbb{R}$ convexa si
+$f:C\to\mathbb{R}$ es convexa si
 
 $$
 f(\lambda x+(1-\lambda)y)\le \lambda f(x)+(1-\lambda)f(y).
 $$
 
-Si es diferenciable:
+Si es diferenciable, una condición útil es
 
 $$
-f(y)\ge f(x)+\nabla f(x)^\top(y-x),\quad \forall x,y\in C.
+f(y)\ge f(x)+\nabla f(x)^\top(y-x).
 $$
 
-Si es dos veces diferenciable:
+## Por qué importa
 
-$$
-\nabla^2 f(x)\succeq 0\quad \forall x\in C.
-$$
+En problemas convexos:
 
-## Importancia en optimización
+- cualquier mínimo local es global,
+- el análisis de optimalidad es más limpio,
+- la dualidad tiene mejores propiedades.
 
-Si problema es convexo (objetivo convexo, restricciones de desigualdad convexas, igualdades afines), entonces todo óptimo local es global.
-
-![funciones convexas imagen 01](/img/funciones-convexas-imagen-01.png)
-![funciones convexas imagen 02](/img/funciones-convexas-imagen-02.png)
+:::tip[Ejemplo guiado]
+Si $f(x)=x^2$ en $\mathbb{R}$, la función es convexa y el mínimo local en 0 es automáticamente global. En cambio, con una función ondulada no convexa, un mínimo local puede ser solo una trampa local.
+:::

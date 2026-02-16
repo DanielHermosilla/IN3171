@@ -2,6 +2,8 @@
 title: "Uso rápido de Gurobi para IN3171"
 ---
 
+Esta guía es un punto de partida para llevar un modelo matemático a código de forma limpia.
+
 ## Esqueleto mínimo en Python
 
 ```python
@@ -11,10 +13,10 @@ from gurobipy import GRB
 m = gp.Model("modelo")
 
 # Variables
-x = m.addVars(I, J, vtype=GRB.CONTINUOUS, lb=0, name="x")
+x = m.addVars(I, J, lb=0.0, vtype=GRB.CONTINUOUS, name="x")
 y = m.addVars(J, vtype=GRB.BINARY, name="y")
 
-# Función objetivo
+# Objetivo
 m.setObjective(
     gp.quicksum(c[i, j] * x[i, j] for i in I for j in J)
     + gp.quicksum(f[j] * y[j] for j in J),
@@ -23,29 +25,24 @@ m.setObjective(
 
 # Restricciones
 m.addConstrs((gp.quicksum(x[i, j] for j in J) == d[i] for i in I), name="demanda")
-m.addConstrs((x[i, j] <= U[i, j] * y[j] for i in I for j in J), name="acople")
+m.addConstrs((x[i, j] <= M[i, j] * y[j] for i in I for j in J), name="acople")
 
 m.optimize()
-
-if m.Status == GRB.OPTIMAL:
-    print("Obj:", m.ObjVal)
 ```
 
-## Parámetros útiles
+## Buenas prácticas mínimas
 
-```python
-m.Params.MIPGap = 0.001
-m.Params.TimeLimit = 300
-m.Params.OutputFlag = 1
-```
+- nombrar restricciones para depurar,
+- revisar estado del modelo (`m.Status`) antes de leer solución,
+- imprimir variables relevantes y valor objetivo,
+- validar que la solución tenga sentido operacional.
 
-## Lectura de resultados
+## Diagnóstico básico de resultados
 
-- `m.ObjVal`: valor óptimo.
-- `x[i,j].X`: valor de variable.
-- `Constr.Pi` (en LP): precio sombra.
+- `OPTIMAL`: solución óptima encontrada,
+- `INFEASIBLE`: revisar formulación o datos,
+- `UNBOUNDED`: revisar cotas/estructura del objetivo.
 
-## Diagnóstico rápido
-
-- `INF_OR_UNBD`: revisar dominios y cotas.
-- MIP muy lento: revisar [Fortaleza de formulaciones](/02-modelacion-con-problemas-lineales-enteros/03-fortaleza-de-formulaciones/).
+:::tip[Ejemplo guiado]
+Si un modelo binario arroja variables continuas fraccionarias, revisa que el `vtype` sea realmente `GRB.BINARY` y que no estés leyendo la relajación por error.
+:::
