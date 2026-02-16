@@ -1,0 +1,25 @@
+:root[data-theme='dark'] {
+	/* Darker neutral scale for backgrounds and surfaces */
+	--sl-color-black: hsl(224, 18%, 6%);
+	--sl-color-gray-6: hsl(224, 17%, 9%);
+	--sl-color-gray-5: hsl(224, 14%, 15%);
+	--sl-color-gray-4: hsl(224, 10%, 32%);
+	--sl-color-gray-3: hsl(224, 9%, 60%);
+	--sl-color-gray-2: hsl(224, 10%, 84%);
+	--sl-color-gray-1: hsl(224, 18%, 95%);
+
+	/* Accent tuned for high contrast on darker backgrounds */
+	--sl-color-accent-low: hsl(214, 58%, 18%);
+	--sl-color-accent: hsl(214, 100%, 62%);
+	--sl-color-accent-high: hsl(214, 100%, 86%);
+
+	--sl-color-text: var(--sl-color-gray-2);
+	--sl-color-text-accent: var(--sl-color-accent-high);
+	--sl-color-bg: var(--sl-color-black);
+	--sl-color-bg-nav: var(--sl-color-gray-6);
+	--sl-color-bg-sidebar: var(--sl-color-gray-6);
+	--sl-color-bg-inline-code: var(--sl-color-gray-5);
+	--sl-color-hairline-light: var(--sl-color-gray-5);
+	--sl-color-hairline: var(--sl-color-gray-6);
+	--sl-color-hairline-shade: var(--sl-color-black);
+}

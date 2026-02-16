@@ -1,0 +1,33 @@
+@import '@fontsource/fira-sans/500.css';
+@import '@fontsource/fira-sans/600.css';
+@import '@fontsource/fira-sans/700.css';
+
+:root[data-theme='dark'] {
+	/* Purple-tinted dark neutrals */
+	--sl-color-black: hsl(256, 22%, 6%);
+	--sl-color-gray-6: hsl(254, 18%, 9%);
+	--sl-color-gray-5: hsl(254, 15%, 15%);
+	--sl-color-gray-4: hsl(254, 12%, 33%);
+	--sl-color-gray-3: hsl(254, 10%, 61%);
+	--sl-color-gray-2: hsl(254, 12%, 85%);
+	--sl-color-gray-1: hsl(254, 22%, 95%);
+
+	/* Purple accent with strong contrast */
+	--sl-color-accent-low: hsl(272, 60%, 18%);
+	--sl-color-accent: hsl(272, 100%, 70%);
+	--sl-color-accent-high: hsl(272, 100%, 88%);
+
+	--sl-color-text: var(--sl-color-gray-2);
+	--sl-color-text-accent: var(--sl-color-accent-high);
+	--sl-color-bg: var(--sl-color-black);
+	--sl-color-bg-nav: var(--sl-color-gray-6);
+	--sl-color-bg-sidebar: var(--sl-color-gray-6);
+	--sl-color-bg-inline-code: var(--sl-color-gray-5);
+	--sl-color-hairline-light: var(--sl-color-gray-5);
+	--sl-color-hairline: var(--sl-color-gray-6);
+	--sl-color-hairline-shade: var(--sl-color-black);
+}
+
+:root[data-theme='dark'] :is(h1, h2, h3, h4, h5, h6) {
+	font-family: 'Fira Sans', var(--__sl-font);
+}

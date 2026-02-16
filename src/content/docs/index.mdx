@@ -1,40 +1,55 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: "IN3171 — Modelamiento y Optimización"
+description: "Ruta de estudio y apuntes estructurados para todo el curso."
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: "Notas del curso IN3171 organizadas por unidades, con foco en modelación, dualidad y métodos de solución."
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Empezar la ruta
+      link: /00-ruta-del-curso/00-programa-unidades-y-capitulos-guia/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
+    - text: Ver cronología 
+      link: /00-ruta-del-curso/01-cronologia-completa-de-clases-2024/
+      icon: open-book
       variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## Unidades del Curso
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+	<Card title="Ruta del curso" icon="document">
+		Mapa general del programa, orden recomendado de estudio y cronología de clases.
+		[Ir a la ruta](/00-ruta-del-curso/00-programa-unidades-y-capitulos-guia/)
 	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
+	<Card title="Unidad 1 · Fundamentos y redes" icon="open-book">
+		Modelación de problemas, flujo máximo/mínimo, camino mínimo y modelos clásicos de redes.
+		[Ver unidad](/01-fundamentos-y-modelacion-en-redes/00-unidad-1-mapa/)
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+	<Card title="Unidad 2 · Modelación entera" icon="pencil">
+		Variables binarias, Big-M, formulaciones fuertes, Branch and Bound, cortes y Branch-and-Cut.
+		[Ver unidad](/02-modelacion-con-problemas-lineales-enteros/00-unidad-2-mapa/)
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
+	<Card title="Unidad 3 · Geometría y Simplex" icon="setting">
+		Poliedros, vértices, soluciones básicas factibles, degeneración, pivoteo y criterio de optimalidad.
+		[Ver unidad](/03-geometria-de-poliedros-y-metodo-simplex/00-unidad-3-mapa/)
 	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+	<Card title="Unidad 4 · Dualidad y sensibilidad" icon="add-document">
+		Dualidad débil/fuerte, holgura complementaria, precio sombra, Lema de Farkas y dualidad lagrangeana.
+		[Ver unidad](/04-dualidad-y-sensibilidad-de-soluciones-optimas/00-unidad-4-mapa/)
+	</Card>
+	<Card title="Unidad 5 · Optimización no lineal" icon="open-book">
+		Convexidad, existencia de óptimos, lagrangeano, KKT, Slater y esquema de resolución convexa.
+		[Ver unidad](/05-elementos-de-optimizacion-no-lineal/00-unidad-5-mapa/)
 	</Card>
 </CardGrid>
+
+## Taller y Práctica
+
+- [Guía de estudio para controles y examen](/06-taller-y-practica/00-guia-de-estudio-para-controles-y-examen/)
+- [Plantilla de modelación y checklist](/06-taller-y-practica/01-plantilla-de-modelacion-y-checklist/)
+- [Uso rápido de Gurobi para IN3171](/06-taller-y-practica/02-uso-rapido-de-gurobi-para-in3171/)
+- [Banco de ejercicios integradores](/06-taller-y-practica/03-banco-de-ejercicios-integradores/)
